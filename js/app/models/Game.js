@@ -1,5 +1,5 @@
 class Game{
-    contructor(){
+    constructor(){
         this._frames= [];
     }
     adiciona(frame){

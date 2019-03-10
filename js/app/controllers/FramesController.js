@@ -1,13 +1,22 @@
+
+        let $ = document.querySelector.bind(document);
 class FramesController{
     constructor(){
-        let $ = document.querySelector.bind(document);
-        console.log($('.form'));
-        //$('.form').addEventListener("click", this.jogar(event));
-        $('.form').onsubmit = this.jogar.bind(this);
-        this._inputPinos = $("pinos");
+        $('.form').onsubmit = this.pontuar.bind(this);
+        $('#novoJogo').onclick = this.novoJogo.bind(this);
+        this._inputPinos = $('#pinos');
+
+        this._game=new Game();
+        this._framesView = new FramesView($('#framesView'));
+        this._framesView.update(this._game);
     }
-    jogar(event){
+    pontuar(event){
         event.preventDefault();
-        console.log("aqui");
+        this._game.adiciona(new Frame($('#pinos').value));
+        this._framesView.update(this._game);
+    }
+    novoJogo(){
+        this._game=new Game();
+        this._framesView.update(this._game);
     }
 }
