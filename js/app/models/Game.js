@@ -4,12 +4,18 @@ class Game{
         this._jogador2=jogador2;
         this._frames= [];
     }
-    adiciona(frame){
+    vez(){
         if(this._frames.length%2 == 0){
-            frame.jogador = this._jogador1;
+            return this._jogador1;
         }else{
-            frame.jogador = this._jogador2;
+            return this._jogador2;
         }
+    }
+    ultimoEStrike(){
+        return this._frames[this._frames.length - 1] == 10;
+    }
+    adiciona(frame){
+        frame.jogador = this.vez();
         this._frames.push(frame);
     }
     get frames(){

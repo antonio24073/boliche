@@ -1,9 +1,12 @@
 class Frame{
-    constructor(pinos){
-        this._pinos = pinos;
+    constructor(){
+        this._jogadas= [];
     }
-    get pinos(){
-        return this._pinos;
+    adiciona(jogada){
+        this._jogadas.push(jogada);
+    }
+    get jogadas(){
+        return [].concat(this._jogadas);
     }
     get jogador(){
         return this._jogador;
