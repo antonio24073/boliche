@@ -1,6 +1,5 @@
 class Frame{
-    constructor(jogador, pinos){
-        this._jogador = jogador;
+    constructor(pinos){
         this._pinos = pinos;
     }
     get pinos(){
@@ -8,6 +7,9 @@ class Frame{
     }
     get jogador(){
         return this._jogador;
+    }
+    set jogador(jogador){
+        this._jogador=jogador;
     }
     get bonus(){
         return this._bonus;

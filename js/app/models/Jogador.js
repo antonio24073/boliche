@@ -1,7 +1,7 @@
 class Jogador{
     constructor(nome){
         this._nome = nome;
-        this._pontos = pontos;
+        this._pontos = 0;
     }
     get nome(){
         return this._nome;
