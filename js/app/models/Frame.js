@@ -6,7 +6,7 @@ class Frame{
         this._jogadas.push(jogada);
     }
     get jogadas(){
-        return [].concat(this._jogadas);
+        return this._jogadas;
     }
     get jogador(){
         return this._jogador;
@@ -14,11 +14,11 @@ class Frame{
     set jogador(jogador){
         this._jogador=jogador;
     }
-    get bonus(){
-        return this._bonus;
+    get contador(){
+        return this._contador;
     }
-    set bonus(bonus) {
-        this._bonus = bonus;
+    set contador(contador) {
+        this._contador = contador;
     }
     get pontos(){
         return this._pontos;
