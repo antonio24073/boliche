@@ -5,8 +5,15 @@ class Game {
         this._frames = [];
         this._contador = 0;
     }
+    isPar(){
+        if(this._frames.length % 2 == 0){
+            return 1;
+        }else{
+            return 0;
+        }
+    }
     vez() {
-        if (this._frames.length % 2 == 0) {
+        if (this.isPar()) {
             return this._jogador1;
         } else {
             return this._jogador2;
@@ -48,11 +55,17 @@ class Game {
         frame._contador=this._contador;
         this._contador++;
         this._frames.push(frame);
+        this._frames[this.frames.length-1].acumuladorDePontos=this.acumuladorDePontos();
     }
     get frames() {
         return [].concat(this._frames);
     }
     calculaPontos() {
-        this._frames[this._frames.length - 1].jogadas.reduce((total, jogada) => total + jogada.pinos, 0.0);
+        if(this._frames.length>=1){
+            return this._frames[this._frames.length - 1].jogadas.reduce((total, jogada) => total + jogada.pinos, 0.0);
+        }
+    }
+    acumuladorDePontos(){
+        return this._frames.filter(frame => frame._contador%2==this.isPar()).reduce((total, frame) => total + frame.pontos, 0.0);
     }
 }

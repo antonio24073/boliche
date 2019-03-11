@@ -26,4 +26,10 @@ class Frame{
     set pontos(pontos) {
         this._pontos = pontos;
     }
+    get acumuladorDePontos(){
+        return this._acumuladorDePontos;
+    }
+    set acumuladorDePontos(acumuladorDePontos) {
+        this._acumuladorDePontos = acumuladorDePontos;
+    }
 }
