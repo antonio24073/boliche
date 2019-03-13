@@ -2,27 +2,26 @@ class FramesView {
     constructor(elemento) {
         this._elemento = elemento;
     }
-    template(model) {
+    template(game) {
         return `
-            ${model.frames.map(n => `
-            ${n.contador%2==0?`<table border=1 style="float:left">`:``}
-                <tr>
-                    ${n.jogadas.map(m => `
-                    <td>${m.pinos}</td>
-                        `).join('')}
-                </tr>
-                <tr>
-                <td colspan=3>${n.pontos}</td>
-                    <td colspan=3>${n.acumuladorDePontos}</td>
-                </tr>
-
-                ${n.contador%2==0?``:`</table>`}
-                
-              `).join('')}
+            ${game.listFrames.map(l=>`
+                ${l.frames.map(n => `<table border=1 style="float:left">
+                    <tr>
+                        ${n.jogadas.map(m => `
+                        <td>${m.pinos}</td>
+                            `).join('')}
+                    </tr>
+                    <tr>
+                    <td>${n.pontos}</td>
+                        <td>${n.acumuladorDePontos}</td>
+                    </tr>
+                    </table>
+                `).join('')}
+            `).join('')}
         `;
     }
-    update(model) {
-        this._elemento.innerHTML = this.template(model);
+    update(game) {
+        this._elemento.innerHTML = this.template(game);
     }
 }
 //<td>${n.jogador.nome}</td>

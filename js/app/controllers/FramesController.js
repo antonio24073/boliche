@@ -20,7 +20,9 @@ class FramesController {
         event.preventDefault();
         this._jogador1 = new Jogador(this._inputJogador1.value);
         this._jogador2 = new Jogador(this._inputJogador2.value);
-        this._game = new Game(this._jogador1, this._jogador2);
+        this._game = new Game();
+        this._game.adiciona(new ListFrames(new Jogador(this._inputJogador1.value)));
+        this._game.adiciona(new ListFrames(new Jogador(this._inputJogador2.value)));
         this._vezDoJogadorView.update(this._game);
         this._nomesView.update(this._game);
         this._framesView.update(this._game);

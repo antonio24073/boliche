@@ -2,12 +2,12 @@ class VezDoJogadorView {
     constructor(elemento) {
         this._elemento = elemento;
     }
-    template(model) {
+    template(game) {
         return `
-        Vez do jogador: ${model.vez().nome}
+        Vez do jogador: ${game.listFrameAtual().jogador.nome}
         `;
     }
-    update(model) {
-        this._elemento.innerHTML = this.template(model);
+    update(game) {
+        this._elemento.innerHTML = this.template(game);
     }
 }

@@ -6,12 +6,8 @@ class Game {
     adiciona(listFrame){
         this._listFrames.push(listFrame);
     }
-    vez() {
-        if (this.isPar()) {
-            return this._jogador1;
-        } else {
-            return this._jogador2;
-        }
+    listFrameAtual(){
+        return this._listFrames[this._contador];
     }
     passaVez(){
         this._contador++;

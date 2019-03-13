@@ -2,23 +2,22 @@ class NomesView {
     constructor(elemento) {
         this._elemento = elemento;
     }
-    template(model) {
+    template(game) {
         return `
-            ${model.frames.map(n => `
-            ${n.contador==0||n.contador==1?`
-            ${n.contador==0?`<table border=1 style="float:left">`:``}
+        <table border=1 style="float:left">
+            ${game.listFrames.map(n => `
+            
             <tr>
                 <td>${n.jogador.nome}</td>
             </tr>
             <tr>
                 <td>Pontos:</td>
             </tr>
-            ${n.contador==1?`</table>`:``}
-            `:``}
             `).join('')}
+            </table>
         `;
     }
-    update(model) {
-        this._elemento.innerHTML = this.template(model);
+    update(game) {
+        this._elemento.innerHTML = this.template(game);
     }
 }
