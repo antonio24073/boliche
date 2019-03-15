@@ -60,6 +60,7 @@ class FramesController {
                     this._game.listFramesAtual.frames[this._game.listFramesAtual.frames.length - 2].pontos += this._frame.pontos;
                     this._game.listFramesAtual.frames[this._game.listFramesAtual.frames.length - 3].pontos += this._frame.pontos;
                 }
+                this._game.listFramesAtual.recalcularSomatorias();
                 this._game.passaVez();
                 this._frame = new Frame();
             }

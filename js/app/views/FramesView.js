@@ -17,8 +17,8 @@ class FramesView {
                             `).join('')}
                     </tr>
                     <tr>
-                    <td>${f.pontos}</td>
-                        <td>${f.acumuladorDePontos}</td>
+                    <!--<td>${f.pontos}</td>-->
+                        <td colspan=3>${f.acumuladorDePontos}</td>
                     </tr>
                 </table>
                 </td>

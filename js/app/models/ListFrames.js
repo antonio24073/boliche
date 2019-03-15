@@ -10,19 +10,22 @@ class ListFrames{
         frame._contador=this._contador;
         this._contador++;
         this._frames.push(frame);
-        this._frames.forEach(frame=>{
-
-        });
+        console.log(this._frames);
         // this._frames[this.   frames.length-1].acumuladorDePontos=this.acumuladorDePontos();
     }
     get jogador() {
         return this._jogador;
     }
     get frames() {
-        return [].concat(this._frames);
+        return this._frames;
+    }
+    recalcularSomatorias(){
+        this._frames.forEach(frame=>{
+            frame.acumuladorDePontos = this.somarPontosAte(frame.contador);
+        });
     }
     somarPontosAte(end){
-        return this._frames.slice([0, end]).reduce((total, frame) => total + frame.pontos, 0.0);
+        return this._frames.slice(0, end+1).reduce((total, frame) => total + frame.pontos, 0.0);
     }
 
     totalPinosDerrubadosNaPenultima() {
