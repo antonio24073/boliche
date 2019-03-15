@@ -6,7 +6,7 @@ class Game {
     adiciona(listFrame){
         this._listFrames.push(listFrame);
     }
-    listFrameAtual(){
+    get listFramesAtual(){
         return this._listFrames[this._contador];
     }
     passaVez(){

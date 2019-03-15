@@ -3,13 +3,17 @@ class ListFrames{
     constructor(jogador) {
         this._jogador = jogador;
         this._frames = [];
+        this._contador = 0;
     }
     
     adiciona(frame) {
-        // frame._contador=this._contador;
-        // this._contador++;
+        frame._contador=this._contador;
+        this._contador++;
         this._frames.push(frame);
-        this._frames[this.frames.length-1].acumuladorDePontos=this.acumuladorDePontos();
+        this._frames.forEach(frame=>{
+
+        });
+        // this._frames[this.   frames.length-1].acumuladorDePontos=this.acumuladorDePontos();
     }
     get jogador() {
         return this._jogador;
@@ -22,8 +26,8 @@ class ListFrames{
     }
 
     totalPinosDerrubadosNaPenultima() {
-        if (this._frames.length >= 3) {
-            return this._frames[this._frames.length - 3].jogadas.reduce((total, jogada) => total + jogada.pinos, 0.0);
+        if (this._frames.length >= 2) {
+            return this._frames[this._frames.length - 2].jogadas.reduce((total, jogada) => total + jogada.pinos, 0.0);
         }
         return 0;
     }
@@ -34,14 +38,14 @@ class ListFrames{
         return this.totalPinosDerrubadosNaPenultima() == 10;
     }
     antepenultimaEStrike() {
-        if (this._frames.length >= 5) {
-            return this._frames[this._frames.length - 5].jogadas[0].pinos == 10;
+        if (this._frames.length >= 3) {
+            return this._frames[this._frames.length - 3].jogadas[0].pinos == 10;
         }
         return false;
     }
     penultimaEStrike() {
-        if (this._frames.length >= 3) {
-            return this._frames[this._frames.length - 3].jogadas[0].pinos == 10;
+        if (this._frames.length >= 2) {
+            return this._frames[this._frames.length - 2].jogadas[0].pinos == 10;
         }
         return false;
     }
@@ -50,10 +54,5 @@ class ListFrames{
             return this._frames[this._frames.length - 1].jogadas[0].pinos == 10;
         }
         return false;
-    }
-    calculaPontos() {
-        if(this._frames.length>=1){
-            return this._frames[this._frames.length - 1].jogadas.reduce((total, jogada) => total + jogada.pinos, 0.0);
-        }
     }
 }

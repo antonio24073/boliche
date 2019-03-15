@@ -4,7 +4,7 @@ class VezDoJogadorView {
     }
     template(game) {
         return `
-        Vez do jogador: ${game.listFrameAtual().jogador.nome}
+        Vez do jogador: ${game.listFramesAtual.jogador.nome}
         `;
     }
     update(game) {

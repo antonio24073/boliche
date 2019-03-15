@@ -34,28 +34,33 @@ class FramesController {
         }
         this._jogada = new Jogada(parseInt($('#pinos').value));
         this._frame.adiciona(this._jogada);
-        if (this._game.frames.length == 18 || this._game.frames.length == 19) {
+
+        if (this._game.listFramesAtual.frames.length == 18) {
             if (this._frame.jogadas.length == 3) {
-                this._game.adiciona(this._frame);
+                this._game.listFramesAtual.adiciona(this._frame);
+                this._game.passaVez();
                 this._frame = new Frame();
             }
-        } else if (this._game.frames.length > 19) {
+        } else if (this._game.listFramesAtual.frames.length > 19) {
             throw Error('É necessário criar um novo jogo.');
         } else {
             if (this._frame.jogadas.length == 2 || this._jogada.pinos==10) {
+                this._game.listFramesAtual.adiciona(this._frame);
                 this._frame.pontos = this._frame.jogadas.reduce((total, jogada) => total + jogada.pinos, 0.0);
-                this._game.adiciona(this._frame);
-                if (this._game.penultimaESpare()) {
-                    this._game.frames[this._game.frames.length - 3].pontos += this._frame.jogadas[0].pinos;
+                if (this._game.listFramesAtual.penultimaESpare()) {
+                    console.log("aqui1");
+                    this._game.listFramesAtual.frames[this._game.listFramesAtual.frames.length - 2].pontos += this._frame.jogadas[0].pinos;
                 }
-                if (this._game.penultimaEStrike() && !(this._game.atualEStrike())) {
-                    this._game.frames[this._game.frames.length - 3].pontos += this._frame.pontos;
-                } else if (!this._game.antepenultimaEStrike() && this._game.penultimaEStrike() && this._game.atualEStrike()) {
-                    this._game.frames[this._game.frames.length - 3].pontos += this._frame.pontos;
-                } else if (this._game.antepenultimaEStrike() && this._game.penultimaEStrike() && this._game.atualEStrike()) {
-                    this._game.frames[this._game.frames.length - 3].pontos += this._frame.pontos;
-                    this._game.frames[this._game.frames.length - 5].pontos += this._frame.pontos;
+                if (this._game.listFramesAtual.penultimaEStrike() && !(this._game.listFramesAtual.atualEStrike())) {
+                    console.log("aqui2");
+                    this._game.listFramesAtual.frames[this._game.listFramesAtual.frames.length - 2].pontos += this._frame.pontos;
+                } else if (!this._game.listFramesAtual.antepenultimaEStrike() && this._game.listFramesAtual.penultimaEStrike() && this._game.listFramesAtual.atualEStrike()) {
+                    this._game.listFramesAtual.frames[this._game.listFramesAtual.frames.length - 2].pontos += this._frame.pontos;
+                } else if (this._game.listFramesAtual.antepenultimaEStrike() && this._game.listFramesAtual.penultimaEStrike() && this._game.listFramesAtual.atualEStrike()) {
+                    this._game.listFramesAtual.frames[this._game.listFramesAtual.frames.length - 2].pontos += this._frame.pontos;
+                    this._game.listFramesAtual.frames[this._game.listFramesAtual.frames.length - 3].pontos += this._frame.pontos;
                 }
+                this._game.passaVez();
                 this._frame = new Frame();
             }
         }

@@ -4,20 +4,28 @@ class FramesView {
     }
     template(game) {
         return `
+        <table style="float:left">
             ${game.listFrames.map(l=>`
-                ${l.frames.map(n => `<table border=1 style="float:left">
+            <tr>
+            ${l.jogador}
+                ${l.frames.map(f => `
+                <td>
+                <table border=1>
                     <tr>
-                        ${n.jogadas.map(m => `
-                        <td>${m.pinos}</td>
+                        ${f.jogadas.map(j => `
+                        <td>${j.pinos}</td>
                             `).join('')}
                     </tr>
                     <tr>
-                    <td>${n.pontos}</td>
-                        <td>${n.acumuladorDePontos}</td>
+                    <td>${f.pontos}</td>
+                        <td>${f.acumuladorDePontos}</td>
                     </tr>
-                    </table>
+                </table>
+                </td>
                 `).join('')}
+            </tr>
             `).join('')}
+            </table>
         `;
     }
     update(game) {
