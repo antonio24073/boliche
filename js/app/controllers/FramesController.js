@@ -39,7 +39,6 @@ class FramesController {
         if (this._game.listFramesAtual.frames.length == 4) {
             if (this._frame.jogadas.length == 3) {
                 this._game.listFramesAtual.adiciona(this._frame);
-                this._game.bonus(this._frame);
                 this._game.passaVez();
                 this._frame = new Frame();
             }
@@ -48,8 +47,6 @@ class FramesController {
         } else {
             if (this._frame.jogadas.length == 2 || this._jogada.pinos==10) {
                 this._game.listFramesAtual.adiciona(this._frame);
-                this._frame.pontos = this._frame.jogadas.reduce((total, jogada) => total + jogada.pinos, 0.0);
-                this._game.bonus(this._frame);
                 this._game.passaVez();
                 this._frame = new Frame();
             }

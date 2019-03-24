@@ -10,6 +10,8 @@ class ListFrames{
         frame._contador=this._contador;
         this._contador++;
         this._frames.push(frame);
+        frame.pontos = frame.jogadas.reduce((total, jogada) => total + jogada.pinos, 0.0);
+        this.bonus(frame);
         console.log(this._frames);
         // this._frames[this.   frames.length-1].acumuladorDePontos=this.acumuladorDePontos();
     }
@@ -18,6 +20,21 @@ class ListFrames{
     }
     get frames() {
         return this._frames;
+    }
+
+    bonus(frame) {
+        if (this.penultimaESpare()) {
+            this.frames[this.frames.length - 2].pontos += frame.jogadas[0].pinos;
+        }
+        if (this.penultimaEStrike() && !(this.atualEStrike())) {
+            this.frames[this.frames.length - 2].pontos += frame.pontos;
+        } else if (!this.antepenultimaEStrike() && this.penultimaEStrike() && this.atualEStrike()) {
+            this.frames[this.frames.length - 2].pontos += frame.pontos;
+        } else if (this.antepenultimaEStrike() && this.penultimaEStrike() && this.atualEStrike()) {
+            this.frames[this.frames.length - 2].pontos += frame.pontos;
+            this.frames[this.frames.length - 3].pontos += frame.pontos;
+        }
+        this.recalcularSomatorias();
     }
     recalcularSomatorias(){
         this._frames.forEach(frame=>{
