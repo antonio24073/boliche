@@ -23,18 +23,43 @@ class ListFrames{
     }
 
     bonus(frame) {
+        let penultima = this.frames[this.frames.length - 2];
+        let antepenultima = this.frames[this.frames.length - 3];
         if (this.penultimaESpare()) {
-            this.frames[this.frames.length - 2].pontos += frame.jogadas[0].pinos;
+            penultima.pontos += frame.jogadas[0].pinos;
         }
         if (this.penultimaEStrike() && !(this.atualEStrike())) {
-            this.frames[this.frames.length - 2].pontos += frame.pontos;
+            penultima.pontos += frame.jogadas[0].pinos;
+            penultima.pontos += frame.jogadas[1].pinos;
         } else if (!this.antepenultimaEStrike() && this.penultimaEStrike() && this.atualEStrike()) {
-            this.frames[this.frames.length - 2].pontos += frame.pontos;
+            penultima.pontos += frame.jogadas[0].pinos;
+            if(frame.jogadas.length>1){
+                this.bonusNoFimDoJogo(frame);
+            }
         } else if (this.antepenultimaEStrike() && this.penultimaEStrike() && this.atualEStrike()) {
-            this.frames[this.frames.length - 2].pontos += frame.pontos;
-            this.frames[this.frames.length - 3].pontos += frame.pontos;
+            penultima.pontos += frame.jogadas[0].pinos;
+            antepenultima.pontos += frame.jogadas[0].pinos;
+            if(frame.jogadas.length>1){
+                this.bonusNoFimDoJogo(frame);
+            }
         }
         this.recalcularSomatorias();
+    }
+
+    bonusNoFimDoJogo(frame) {
+        let ultima = this.frames[this.frames.length - 1];
+        let penultima = this.frames[this.frames.length - 2];
+        penultima.pontos += frame.jogadas[1].pinos;
+        if (frame.jogadas[0].pinos + frame.jogadas[1].pinos == 10) { //spare
+            ultima.pontos += frame.jogadas[2].pinos;
+        }
+        if (frame.jogadas[0].pinos == 10) { //strike na primeira
+            ultima.pontos += frame.jogadas[1].pinos;
+            ultima.pontos += frame.jogadas[2].pinos;
+        }
+        if (frame.jogadas[1].pinos == 10) { // strike na segunda
+            ultima.pontos += frame.jogadas[2].pinos;
+        }
     }
     recalcularSomatorias(){
         this._frames.forEach(frame=>{
